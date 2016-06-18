@@ -1,4 +1,19 @@
+/* Main */
 body {
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+	font-weight: 200;
+	color: #2f4f4f;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+	color: #2f4f4f;
+}
+a:hover {
+	text-decoration: underline;
+	color: #2f4f4f;
 }
 p {
 	text-align: left;
@@ -7,17 +22,33 @@ table {
 	border-width: 1px;
 	border-color: black;
 }
+h1 {
+	font-family: "Helvetica Neue", "Arial", sans-serif;
+	font-weight: 800;
+    font-style: italic;
+	overflow: hidden;
+	line-height:56px;
+	font-size: 72px;
+	color: black;
+	margin:0px;
+	display: inline-block;
+
+}
 input[type=text],
 input[type=password] {
 	width: 400px;
 }
+/* end main */
+/* Clearfix */
+.clearfix {
+	clear: both;
+}
+/* end clearfix */
+
 .container {
 	width: 100%;
 	height: 90%;
 	background: white;
-	font-family: "Helvetica Neue", "Helvetica", sans-serif;
-	font-weight: 200;
-	color: #2f4f4f;
 }
 .central {
 	padding: 0;
@@ -30,3 +61,73 @@ input[type=password] {
 	top: 50%;
 	left: 50%;
 }
+.top-nav {
+	margin: 0;
+	height: 80px;
+	position:relative;
+	background: rgba(255,255,255,0.8);
+	width: 100%;
+	clear:both;
+}
+.log-bar {
+	float: right;
+	top:0;
+	right:0;
+	padding: 15px;
+	display: inline-block;
+}
+.side-bar {
+	position: relative;
+	bottom:0;
+	top:0;
+	height: 100%;
+	float: left;
+}
+.main {
+	float:left;
+	padding: 42px;
+}
+
+/* Install Effect */
+
+.la-anim-11 {
+	position: fixed;
+	right: 20px;
+	z-index: -1;
+	display: inline-block;
+	visibility: hidden;
+	overflow: hidden;
+	height: 1em;
+	text-align: right;
+	font-weight: 300;
+	font-size: 10em;
+	line-height: 1em;
+	pointer-events: none;
+}
+
+.la-anim-11.la-animate {
+	visibility: visible;
+}
+
+.la-anim-11::after {
+	position: relative;
+	width: 100%;
+	color: rgba(0,0,0,0.1);
+	content: "0%\A 10%\A 22%\A 36%\A 48%\A 53%\A 64%\A 71%\A 83%\A 100%\A";
+	white-space: pre;
+}
+
+.la-anim-11.la-animate::after {
+	-webkit-animation: counter 6s steps(10);
+	animation: counter 6s steps(10);
+}
+
+@keyframes counter { 
+	0% { top: 0; } 
+	100% { top: -10em; opacity: 0;} 
+}
+@-webkit-keyframes counter {
+	0% { top: 0; } 
+	100% { top: -10em; opacity: 0;} 
+}
+/* end install effect */
