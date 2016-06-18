@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Cr&eacute;er un profil</title>
+<style>
+.container {
+	width: 100%;
+	height: 90%;
+	background: white;
+	font-family: "Helvetica Neue", "Helvetica", sans-serif;
+	font-weight: 100;
+	color :#2f4f4f;
+}
+.form {
+	position: absolute;
+	text-align: center;
+	width: 250px;
+	height: 200px;
+	margin-top: -100px;
+	margin-left: -125px;
+	top: 50%;
+	left: 50%;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="form">
+			<p>
+				<form action="create.php" method="post">
+					<input type="text" name="login" value="" placeholder="identifiant" /><br />
+					<input type="password" name="passwd" value="" placeholder="password" />
+					<input type="submit" name="submit" value="OK" />
+				</form>
+			</p>
+		</div>
+	</div>
+</body>
+</html>
