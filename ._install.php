@@ -1,4 +1,5 @@
 <?php
+	/*include("safety.php");*/
 	echo ' 		
 		<div class="la-anim-7"></div><div class="central">
  			<p>';
@@ -7,6 +8,8 @@
 		include("my_connect.php");
 	}
  	function test_install($my_connect) {
+			/*die("L'installation s'est bien pass&eacute;e mais la v&eacuterification a &eacute;chou&eacute;e.\n v&eacute;rifiez que le fichier 'my_connect.php' est pr&eacute;sent &agrave; la base du site et supprimez 'install.php'\n");*/
+		/*$my_connect = connect_minishop();*/
 		if ($my_connect) {
 			die("Installation termin&eacute;e et v&eacute;rifi&eacute;e.<br /> N'oubliez pas de supprimer le fichier 'install.php'<br /> <a href='index.php'>Acc&egraves au minishop</a>");
 		} else {
@@ -58,7 +61,7 @@
 			$tables[users] = "CREATE TABLE users 
 				(
 				user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-				is_admin BOOLEAN DEFAULT FALSE,
+				is_admin BOOLEAN,
 				login VARCHAR(30) NOT NULL,
 				passwd VARCHAR(1000) NOT NULL,
 				name VARCHAR(50),
@@ -75,7 +78,7 @@
 				(
 				cat_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(60),
-				active BOOLEAN NOT NULL DEFAULT TRUE
+				active BOOLEAN NOT NULL DEFAUT TRUE,
 				)";
 			$tables[produit] = "CREATE TABLE produit
 				(
@@ -90,15 +93,14 @@
 			$tables[panier] = "CREATE TABLE panier
 				(
 				id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-				key_panier TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+				key_panier INT(6),
 				qt INT(6),
 				user_id INT(6) UNSIGNED,
 				ref_produit INT(6) UNSIGNED,
-				status INT(1),
+				status VARCHAR(30),
 				FOREIGN KEY (user_id) REFERENCES users (user_id),
 				FOREIGN KEY (ref_produit) REFERENCES produit (ref_produit)
 				)";
-				$tables[use]
 			foreach ($tables as $key => $sql) {
 				echo "Cr&eacute;ation de la table '$key'.<br />";
 				if (mysqli_query($my_connect, $sql)) {
@@ -149,9 +151,8 @@
 					</form>
 				</table>
 <?php
-	} ?>
-	</p>
-		</div>
-	</div>
-</body>
-</html>
+	}
+	echo '		</p>
+		</div>';
+	include("footer.php");
+?>

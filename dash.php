@@ -1,70 +1,39 @@
 <?php
+session_start();
+if ($_SESSION == NULL || !isset($_SESSION['auth']) || $_SESSION['auth']['is_admin'] == NULL || $_SESSION['auth']['is_logged'] !== TRUE)
+{
+	header('Location: index.php');
+	exit();
+}
 include("my_connect.php");
-include("auth.php");
 include("header.php");
 ?>
 		<div class="top-nav">
-		<h1>minishop</h1>
-		</div><!-- /top-nav -->
-		<nav class="st-menu st-effect-4" id="side">
-			<h2 class="icon icon-lab">Menu</h2>
+		<a href="index.php"><h1>Shirts*</h1></a>
+		<?php include("log_me.php"); ?>
+		</div><!-- /top nav -->
+		<div class="side-bar">
 			<ul>
-				<li><a class="" href="#panier">Mon Panier</a></li>
-				<li><a class="" href="#commandes-passees">Mes Commandes Pass&eacute;es</a></li>
-				<li><a class="" href="#info-perso">Mes Informations Personnelles</a></li>
-				<li><a class="" href="#">Administration ventes</a></li>
-				<li><a class="" href="#">Administration des produits</a></li>
-				<li><a class="" href="#">Administration des cat&eacute;gories</a></li>
-				<li><a class="" href="#">Administration des utilisateurs</a></li>
+				<li><a href="delete.php?id=<?php echo($_SESSION['auth']['user_id']);?>">Supprimer mon compte</a></li>
+				<li><a class="" href="delog.php">Se déconnecter<img height="15px" src="http://img11.hostingpics.net/pics/251812error.png" /></a></li>
+				<li><a class="" href="#">Mon Panier</a></li><?php if ($_SESSION[auth][is_admin]==1) {?>
+				<li><a class="" href="admin_prod.php">Administration des produits</a></li>
+				<li><a class="" href="admin_categ.php">Administration des cat&eacute;gories</a></li>
+				<li><a class="" href="admin_users.php">Administration des utilisateurs</a></li><?php } ?>
 			</ul>
-		</nav>
-		<div class="section_dashboard" id="panier"></div><!-- section dashboard -->
-		<div class="section_dashboard" id="commandes-passees"></div><!-- section dashboard -->
-		<div class="section_dashboard" id="info-perso"></div><!-- section dashboard -->
-		<div class="section_dashboard" id="admin-ventes">
-			<table id="admin-ventes">
-			<form name="ventes" action="#" method="post">
-				<tr></tr>
-				<?php for ($i=0; $i < 10; $i++) { ?>
-				<tr><td><input type="text" name="<?echo "nom de substitution";?>" /></td></tr>
-				<?php } ?>
-				<tr><input type="submit" value="OK" /></tr>
-				</tr></form>
-			</table>
-		</div><!-- section dashboard -->
-		<div class="section_dashboard" id="admin-produits">
-			<table id="admin-produits">
-			<form name="produits" action="#" method="post">
-				<tr></tr>
-				<?php for ($i=0; $i < 10; $i++) { ?>
-				<tr><td><input type="text" name="<?echo "nom de substitution";?>" /></td></tr>
-				<?php } ?>
-				<tr><input type="submit" value="OK" /></tr>
-				</tr></form>
-			</table>
-			</div><!-- section dashboard -->
-		<div class="section_dashboard" id="admin-categories">
-			<table id="admin-categories">
-			<form name="categories" action="#" method="post">
-				<tr></tr>
-				<?php for ($i=0; $i < 10; $i++) { ?>
-				<tr><td><input type="text" name="<?echo "nom de substitution";?>" /></td></tr>
-				<?php } ?>
-				<tr><input type="submit" value="OK" /></tr>
-				</tr></form>
-			</table>
-			</div><!-- section dashboard -->
-		<div class="section_dashboard" id="admin-users">
-			<table id="admin-users">
-			<form name="users" action="#" method="post">
-				<tr></tr>
-				<?php for ($i=0; $i < 10; $i++) { ?>
-				<tr><td><input type="text" name="<?echo "nom de substitution";?>" /></td></tr>
-				<?php } ?>
-				<tr><input type="submit" value="OK" /></tr>
-				</tr></form>
-			</table>
-		</div><!-- section dashboard -->
+		</div>
+		<div class="main">
+		<div class="section_dashboard" id="panier"><img src="http://img15.hostingpics.net/pics/112691cart.png"></div><!-- section dashboard -->
+		<div class="section_dashboard" id="info-perso">
+		<p>Nom : <?php echo ($_SESSION['auth']['name'])?> </p>
+		<p>Adresse : <?php echo ($_SESSION['auth']['addr'])?> </p>
+		<p>Code Postale : <?php echo ($_SESSION['auth']['postal_code'])?> </p>
+		<p>Pays : <?php echo ($_SESSION['auth']['country'])?> </p>
+		<p>Ville : <?php echo ($_SESSION['auth']['city'])?> </p>
+		<p>Tel : <?php echo ($_SESSION['auth']['phone'])?> </p>
+		<p>E-mail : <?php echo ($_SESSION['auth']['mail'])?> </p>
+		</div>
+		</div>
 <?php
 include("footer.php");
 ?>

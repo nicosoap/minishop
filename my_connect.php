@@ -1,1 +1,1 @@
-<?php $my_connect = mysqli_connect("localhost", "admin", "admin", "minishop4"); ?>
+<?php $my_connect = mysqli_connect("localhost", "admin", "admin", "minishopX"); ?>
